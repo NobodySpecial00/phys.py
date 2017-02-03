@@ -20,6 +20,17 @@ class calculusComp(object):
 	def integCalc(self, f, a, b):
 		integral = quad(f, a, b)
 		print integral
+class physicsComp(object):
+	def deltaX(self, vn, ti, ax):
+		self._deltax = (vn * ti) + ((ax * (ti ** 2)) / 2)
+		return self._deltax
+	def deltaY(self, vn, ti, ay):
+		self._deltay = (vn * ti) + ((ay * (ti ** 2)) / 2)
+		return self._deltay
+	def getVel(self, infx):
+		self._pfx = infx
+		self._vfx = self._pfx.diff(x)
+		return self._vfx
 def main():
 	calculus = calculusComp()
 	_initOpt = input("Calculation type?\n0=derivative\n1=integral\n> ")
@@ -27,9 +38,6 @@ def main():
 		_fx = input("f(x)> ")
 		calculus.derivCalc(_fx)
 	elif ( _initOpt == 1 ):
-		_fx = input("f(x)> ")
-		_fa = input("a---> ")
-		_tb = input("b---> ")
 		calculus.integCalc(getIntegFunc, 0, 1)
 if __name__ == "__main__":
 	main()
