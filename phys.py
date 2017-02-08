@@ -10,9 +10,9 @@ import sympy           as sp
 from   numpy           import *
 from   scipy.integrate import *
 x = sp.Symbol('x')
-def getIntegFunc(_x):
-	return 3.0 * (_x ** 2)
 class calculusComp(object):
+	def getIntegFunc(self, _x):
+		return 3.00 * (_x ** 2)
 	def derivCalc(self, y):
 		self.fx = y
 		self.fxprime = self.fx.diff(x)
@@ -31,13 +31,26 @@ class physicsComp(object):
 		self._pfx = infx
 		self._vfx = self._pfx.diff(x)
 		return self._vfx
+class setVars(object):
+	def setPhysVar(self, _x):
+		return _x
+	def getVN(self):
+		self.vn = self.setPhysVar(3.00)
+		return self.vn
+	def getTI(self):
+		self.ti = self.setPhysVar(5.00)
+		return self.ti
+	def getAX(self):
+		self.ax = self.setPhysVar(4.00)
+		return self.ax
+	def getAY(self):
+		self.ay = self.setPhysVar(-9.80)
+		return self.ay
 def main():
 	calculus = calculusComp()
-	_initOpt = input("Calculation type?\n0=derivative\n1=integral\n> ")
-	if ( _initOpt == 0 ):
-		_fx = input("f(x)> ")
-		calculus.derivCalc(_fx)
-	elif ( _initOpt == 1 ):
-		calculus.integCalc(getIntegFunc, 0, 1)
+	physics = physicsComp()
+	getvars = setVars()
+	print physics.deltaX(getvars.getVN(), getvars.getTI(), getvars.getAX())
+	print physics.deltaY(getvars.getVN(), getvars.getTI(), getvars.getAY())
 if __name__ == "__main__":
 	main()
